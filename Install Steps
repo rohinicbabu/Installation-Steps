@@ -38,4 +38,29 @@ Step 4 - Configure Java in linux
 To configure java in linux we have add environment variables  in /etc/environment file
 --> $ vi /etc/environment
 Add below lines in the file
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-11-openjdk-amd64/bin"
+JAVA_HOME="/usr/lib/jvm/java-11-openjdk-11.0.11.0.9-1.amzn2.0.1.x86_64"
+PATH=$PATH:$JAVA_HOME/bin
+
+Step 5 - Apply the changes
+Apply the environment variables by using the source command.
+--> $ source /etc/environment
+--> $ echo $JAVA_HOME 
+# output is 
+/usr/lib/jvm/java-11-openjdk-11.0.11.0.9-1.amzn2.0.1.x86_64
+
+########### INSTALL MAVEN #####################
+Step 6 - By using wget command we can download maven from official Apache maven website.
+--> $ sudo yum install wget -y
+
+Step 7 - Download maven using wget
+--> $ wget https://ftp.yz.yamagata-u.ac.jp/pub/network/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+--> $ tar -xzf apache-maven-3.8.1-bin.tar.gz
+--> $ mkdir /opt/maven
+--> $ mv apache-maven-3.6.0 /opt/maven
+now we have successfully download and extracted maven in /opt/maven directory
+
+Step 8 - Configure maven in Linux:
+To configure java in linux we have add environment variables  in /etc/environment file
+--> $ vi /etc/environment
+Add below lines in the file
+M2_HOME="/opt/maven/apache-maven-3.6.0"
