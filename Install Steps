@@ -64,3 +64,4 @@ To configure java in linux we have add environment variables  in /etc/environmen
 --> $ vi /etc/environment
 Add below lines in the file
 M2_HOME="/opt/maven/apache-maven-3.6.0"
+PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin # Only Add $M2_HOME/bin to the PATH (line 42) in the existing file. 
