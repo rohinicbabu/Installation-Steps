@@ -1,0 +1,49 @@
+Install Jenkins on AWS EC2
+
+Jenkins is a self-contained Java-based program, ready to run out-of-the-box, with packages for Windows, Mac OS X and other Unix-like operating systems. 
+As an extensible automation server, Jenkins can be used as a simple CI server or turned into the continuous delivery hub for any project.
+
+Prerequisites
+1. EC2 Instance
+    a. With Internet Access
+    b. Security Group with Port 8080 open for internet
+2. Java v1.8.x
+
+You can install jenkins using the rpm or by setting up the repo. We will set up the repo so that we can update it easily in the future.
+Get the latest version of jenkins from https://pkg.jenkins.io/redhat-stable/ and install
+--> $ yum -y install wget
+--> $ sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+--> $ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+--> $ yum install jenkins
+
+Start Jenkins
+# Start jenkins service
+--> $ service jenkins start
+
+# Setup Jenkins to start at boot,
+--> $ chkconfig jenkins on
+
+Accessing Jenkins
+By default jenkins runs at port 8080, You can access jenkins at
+
+http://YOUR-SERVER-PUBLIC-IP:8080
+
+Configure Jenkins
+The default Username is admin
+Grab the default password
+Password Location:/var/lib/jenkins/secrets/initialAdminPassword
+Skip Plugin Installation; We can do it later
+Change admin password
+Admin > Configure > Password
+Configure java path
+Manage Jenkins > Global Tool Configuration > JDK
+Create another admin user id
+
+Test Jenkins Jobs
+Create “new item”
+Enter an item name – My-First-Project
+Chose Freestyle project
+Under the Build section Execute shell: echo "Welcome to Jenkins Demo"
+Save your job
+Build job
+Check "console output"
