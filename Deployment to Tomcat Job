@@ -10,7 +10,7 @@ Steps to create Jenkin job
 Login to Jenkins console
 Create Jenkins job, Fill the following details,
 Source Code Management:
-Repository: https://github.com/ValaxyTech/hello-world.git
+Repository: https://github.com/cbabu85/workshop-java-web-tdd.git
 Branches to build : */master
 Build:
 Root POM:pom.xml
@@ -25,7 +25,7 @@ To deploy our build artifacts on tomcat server our Jenkins server need access. F
 setup credentials
 credentials > jenkins > Global credentials > add credentials
 Username : deployer
-Password : XXXXXXX
+Password : deployer
 id : Tomcat_user
 Description: Tomcat user to deploy on tomcat server
 Modify the same job which created in part-01 and add deployment steps.
