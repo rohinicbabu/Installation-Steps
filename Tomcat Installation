@@ -24,8 +24,8 @@ Hence lets change tomcat port number to 8090. Change port number in conf/server.
 -->  $ cd /opt/apache-tomcat-8.5.35/conf
 # update port number in the "connecter port" field in server.xml
 # restart tomcat after configuration update
--->  $ tomcatdown
--->  $ tomcatup
+-->  $ ./shutdown.sh
+-->  $ ./startup.sh
 
 check point :
 access tomcat application from browser on prot 8090
@@ -36,16 +36,30 @@ changing a default parameter in context.xml does address this issue
 
 Step 4 #search for context.xml
 --> $ find / -name context.xml
-
+-->  $ vi /opt/apache-tomcat-8.5.69/webapps/manager/META-INF/context.xml
 above command gives 3 context.xml files. comment () Value ClassName field on files which are under webapp directory. 
-
+Uncomment lines as shown below
+<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+	
+We need to do the same thing on 
+-->  $ vi /opt/apache-tomcat-8.5.69/webapps/host-manager/META-INF/context.xml
+Uncomment lines as shown below
+<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 
 Step 5 After that restart tomcat services to effect these changes
--->  $ tomcatdown
--->  $ tomcatup
+-->  $ ./shutdown.sh
+-->  $ ./startup.sh
 
-Step 6 
+Step 6 check point :
+access tomcat application from browser on prot 8080
+http://<Public_IP>:8080 go to Manager App . It will promt for a password for that we need to set username and password as shown beow in step 7
+
+Step 7
 Update users information in the tomcat-users.xml file goto tomcat home directory and Add below users to conf/tomcat-user.xml file
+
+-->  $ conf/tomcat-users.xml
 
 	<role rolename="manager-gui"/>
 	<role rolename="manager-script"/>
@@ -55,3 +69,5 @@ Update users information in the tomcat-users.xml file goto tomcat home directory
 	<user username="deployer" password="deployer" roles="manager-script"/>
 	<user username="tomcat" password="s3cret" roles="manager-gui"/>
 Restart serivce and try to login to tomcat application from the browser. This time it should be Successful
+
+
