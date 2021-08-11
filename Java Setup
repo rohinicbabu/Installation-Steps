@@ -16,7 +16,8 @@ Run below commands to install Java 8 on Amazon Linux:
 For Java 11-
 The OpenJDK 8 is available under default yum repositories and OpenJDK 11 is available under Amazon Linux 2 extras repositories. You can simply install Java 11 or Java 8 on the Amazon Linux system using the following commands.
 1. Run below commands to install Java 11 on Amazon Linux:
---> $ sudo amazon-linux-extras install java-openjdk11
+--> $ yum install java-11-openjdk-devel
+# --> $ sudo amazon-linux-extras install java-openjdk11
 
 Step 2 - Check Active Java Version
 --> $ java -version
